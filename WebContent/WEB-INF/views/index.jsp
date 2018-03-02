@@ -12,7 +12,7 @@
 			Let's Draw<br> <br>
 		</h2>
 		<h2>
-		${deckId}
+		Feeling Lucky?
 		</h2>
 		<h3>
 			<a href="welcome?id=${deckId}">Click here to draw 5 cards</a>

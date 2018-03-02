@@ -9,16 +9,15 @@
 <body>
 <h2>Here's your hand:</h2>
 ${cards}
-<br><br>
-
-${deckId}
 <br>
-<form action="drawAgain" method="post">
+
+<br>
+<form action="welcome?id=${deckId}" method="post">
 <button type=submit name="drawAgain">Draw again</button> 
 </form>
 
 <br><br>
 
-<button type=submit>Make your wager</button>
+<button type=submit>Place a bet</button>
 </body>
 </html>
