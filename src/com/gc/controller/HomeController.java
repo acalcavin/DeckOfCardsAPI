@@ -57,6 +57,9 @@ public class HomeController {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
+		model.addAttribute("profile", "profile");
 				
 		return new ModelAndView("index", "deckId", deckId);
 	}
@@ -98,7 +101,15 @@ public class HomeController {
 		
 		model.addAttribute("deckId", deckId);
 		
+		model.addAttribute("handHere", hand); // testing
+		
 		return new ModelAndView("welcome", "cards", hand);
 
+	}
+	
+	@RequestMapping("test")
+	public String display() {
+		
+		return "test.html";
 	}
 }

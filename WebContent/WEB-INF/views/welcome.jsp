@@ -5,6 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Your 5 cards</title>
+
+
 </head>
 <body>
 <h2>Here's your hand:</h2>
@@ -17,7 +19,7 @@ ${cards}
 </form>
 
 <br><br>
-
+${handHere}
 <button type=submit>Place a bet</button>
 </body>
 </html>
