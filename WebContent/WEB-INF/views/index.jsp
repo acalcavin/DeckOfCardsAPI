@@ -28,12 +28,7 @@
 		</div>
 		<br>
 		<div class="box">
-			<h2>Feeling Lucky?</h2>
-				
-			<!-- 		<h3>
-				<a href="welcome?id=${deckId}">Click here to draw 5 cards</a>
-			</h3>  -->
-			
+			<h2>Feeling Lucky?</h2>			
 			<br>
 			<h3>Click to draw 5 cards:</h3>
 			<h3><a class="btn btn-primary btn-lg" href="play?id=${deckId}" role="button">Draw »</a></h3>

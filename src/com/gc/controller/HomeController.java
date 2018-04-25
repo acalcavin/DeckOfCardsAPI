@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.gc.dao.CardDaoImpl;
 import com.gc.model.Card;
 
 /*
@@ -54,7 +55,7 @@ public class HomeController {
 
 			// Test print to console to confirm communication with API; Response code should
 			// be 200 if successful
-			System.out.println("Response Code: " + resp.getStatusLine().getStatusCode());
+			System.out.println("Response Code: " + resp.getStatusLine().getStatusCode() + ": API Connection successful");
 
 		} catch (ClientProtocolException e) {
 			e.printStackTrace();
@@ -99,6 +100,11 @@ public class HomeController {
 				String suit = arr.getJSONObject(i).get("suit").toString();
 				String lcsuit = suit.substring(0,1) + suit.substring(1).toLowerCase();
 				card.setSuit(lcsuit);
+				card.setPlayer(1);
+				//add card to table
+				//get cardID
+				CardDaoImpl dao = new CardDaoImpl();
+				dao.addCard(card);
 				
 				//add card to array
 				playerHand.add(card);
