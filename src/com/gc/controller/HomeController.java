@@ -97,15 +97,16 @@ public class HomeController {
 				card.setImage(arr.getJSONObject(i).get("image").toString());
 				card.setValue(arr.getJSONObject(i).get("value").toString());
 				//check if face card; set to lc
-				String suit = arr.getJSONObject(i).get("suit").toString();
-				String lcsuit = suit.substring(0,1) + suit.substring(1).toLowerCase();
-				card.setSuit(lcsuit);
+				String allCapsSuit = arr.getJSONObject(i).get("suit").toString();
+				String suit = allCapsSuit.substring(0,1) + allCapsSuit.substring(1).toLowerCase();
+				card.setSuit(suit);
+				card.setCode(arr.getJSONObject(i).get("code").toString());
 				card.setPlayer(1);
 				//add card to table
 				//get cardID
 				CardDaoImpl dao = new CardDaoImpl();
-				dao.addCard(card);
-				
+				int cardID = dao.addCard(card);
+				System.out.println("cardID is " + cardID);
 				//add card to array
 				playerHand.add(card);
 				
@@ -114,6 +115,7 @@ public class HomeController {
 			System.out.println(playerHand.get(0).getValue());
 			System.out.println(playerHand.get(0).getSuit());
 			System.out.println(playerHand.get(0).getImage());
+			System.out.println(playerHand.get(0).getCode());
 			// Test print to console to confirm communication with API; Response code should
 			// be 200 if successful
 			System.out.println("Response Code: " + resp.getStatusLine().getStatusCode());
@@ -130,6 +132,66 @@ public class HomeController {
 
 	}
 
+	@RequestMapping("discard")
+	public ModelAndView discard(@RequestParam("id") String deckId, @RequestParam("cardID") int[] cardIDchecked) {
+		
+		System.out.println(cardIDchecked);
+		
+		ArrayList<Card> playerHand = new ArrayList<Card>();
+		// draw a new card or cards from API
+		// set variables for fields to update
+		// pass those variables into an update function, for the selected cardID 
+		try {
+			HttpClient http = HttpClientBuilder.create().build(); // import the apache version
+
+			// HttpHost holds the variables needed for the connections
+			// default port for http connections is 80
+			// default port for https is 443
+			HttpHost host = new HttpHost("deckofcardsapi.com", 443, "https");
+
+			HttpGet getPage = new HttpGet("/api/deck/" + deckId + "/draw/?count=1");
+
+			HttpResponse resp = http.execute(host, getPage);
+
+			String jsonString = EntityUtils.toString(resp.getEntity());
+
+			JSONObject json = new JSONObject(jsonString);
+			JSONArray arr = json.getJSONArray("cards");
+		
+			String image = arr.getJSONObject(0).get("image").toString();
+			String value = arr.getJSONObject(0).get("value").toString();
+			//check if face card; set to lc
+			String allCapsSuit = arr.getJSONObject(0).get("suit").toString();
+			String suit = allCapsSuit.substring(0,1) + allCapsSuit.substring(1).toLowerCase();
+			String code = arr.getJSONObject(0).get("code").toString();
+			
+			// TODO: use a for loop, to loop through int[] cardIDchecked
+			int cardID = cardIDchecked[0];
+			System.out.println(cardID);
+			int card2 = cardIDchecked[1];
+			System.out.println(card2);
+			
+			CardDaoImpl dao = new CardDaoImpl();
+			//use the cardID, find the row, update it
+			dao.updateCard(cardID, image, suit, value, code);
+			
+			// read from table, cards for player one, put into playerHand
+			
+			
+			// Test print to console to confirm communication with API; Response code should
+			// be 200 if successful
+			System.out.println("Response Code: " + resp.getStatusLine().getStatusCode() + ": API Connection successful");
+		
+		} catch (ClientProtocolException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+		return new ModelAndView("play", "cardList", playerHand);
+	}
+	
+	
 	@RequestMapping("test")
 	public String display() {
 

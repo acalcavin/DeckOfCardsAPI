@@ -13,21 +13,25 @@ public class Card {
 	private String image;
 	private String suit;
 	private String value;
+	private String code;
 	private int player;
 	
 	public Card() {
 		super();
 	}
 	
-	public Card(int cardID, String image, String value, String suit, int player) {
+
+	public Card(int cardID, String image, String suit, String value, String code, int player) {
 		super();
 		this.cardID = cardID;
 		this.image = image;
-		this.value = value;
 		this.suit = suit;
+		this.value = value;
+		this.code = code;
 		this.player = player;
 	}
-	
+
+
 	@Id
 	@Column(name="cardID")
 	public int getCardID() {
@@ -61,6 +65,15 @@ public class Card {
 	}
 	public void setSuit(String suit) {
 		this.suit = suit;
+	}
+
+	@Column(name="card_code")
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 	@Column(name="player")

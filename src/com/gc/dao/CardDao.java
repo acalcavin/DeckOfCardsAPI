@@ -8,7 +8,10 @@ public interface CardDao {
 	
 	public ArrayList<Card> getHand();
 	public Card getCard();
-	public void addCard(Card card);
+	public int addCard(Card card);
 	public void delCard();
+	public void delCard(String code);
+	public void updateCard();
+	public void updateCard(int cardID, String image, String suit, String value, String code);
 
 }
