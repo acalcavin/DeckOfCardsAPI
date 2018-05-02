@@ -210,6 +210,18 @@ public class HomeController {
 		return new ModelAndView("play", "cardList", playerHand);
 	}
 	
+	@RequestMapping("show")
+	public ModelAndView show(Model model) {
+		ArrayList<Card> playerHand = new ArrayList<Card>();
+		ArrayList<Card> dealerHand = new ArrayList<Card>();
+		CardDaoImpl dao = new CardDaoImpl();
+		playerHand = dao.getPlayerHand();
+		dealerHand = dao.getDealerHand();
+		
+		model.addAttribute("dealerHand", dealerHand);		
+		
+		return new ModelAndView("show", "cardList", playerHand);
+	}
 	
 	@RequestMapping("test")
 	public String display() {

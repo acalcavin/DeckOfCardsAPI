@@ -60,11 +60,6 @@ body {
 
 											<p>${myVar.value} of ${myVar.suit}</p>
 
-											<input type="checkbox" name=cardID value="${myVar.cardID}"
-												id="discard-box"> <label for="discard-box">
-												<span
-												style="color: black; text-transform: uppercase; font-size: 14px;">Discard</span>
-											</label>
 										</div>
 
 									</li>
@@ -75,18 +70,45 @@ body {
 						</li>
 
 					</ul>
-					<h3>
-						<input type="submit" class="btn btn-primary btn-lg"
-							value="Discard and Draw »">
-					</h3>
 
 				</form>
+				<h2>Dealer's hand:</h2>
+				<br>
+				<form>
+					
+					<ul class="flex-outer">
 
+						<li>
+							<ul class="flex-inner">
+
+								<c:forEach var="myVar" items="${dealerHand}">
+
+									<li>
+										<div class="card">
+											<div class="zoom">
+												<img src="${myVar.image}" height=200>
+											</div>
+											<br>
+
+											<p>${myVar.value} of ${myVar.suit}</p>
+
+										</div>
+
+									</li>
+
+								</c:forEach>
+
+							</ul>
+						</li>
+
+					</ul>
+
+				</form>
 				<h3>
-					<a class="btn btn-primary btn-lg" href="show" role="button">Show
-						dealer's hand »</a>
+					<a class="btn btn-primary btn-lg" href="./" role="button">Play Again »</a>
 				</h3>
-				<br> <br>
+
+				<br><br>
 
 			</div>
 		</div>

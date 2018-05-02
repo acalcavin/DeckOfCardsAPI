@@ -7,6 +7,7 @@ import com.gc.model.Card;
 public interface CardDao {
 	
 	public ArrayList<Card> getPlayerHand();
+	public ArrayList<Card> getDealerHand();
 	public Card getCard();
 	public int addCard(Card card);
 	public void delCard();

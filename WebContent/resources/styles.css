@@ -95,7 +95,6 @@ pre, .dark{
     border: 3px solid red; 
 }
 
-
 .flex-container > div {
 	
 	width: 150px;
@@ -111,11 +110,39 @@ pre, .dark{
 	justify-content: center;
 }
 
+.flex-outer,
+.flex-inner {
+  list-style-type: none;
+  padding: 0;
+}
+
+.flex-outer {
+  max-width: 850px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
 .flex-outer li,
 .flex-inner {
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  
+}
+
+.flex-inner {
+  padding: 0 8px;
+  justify-content: space-between;  
+}
+
+.flex-outer > li:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.flex-outer li label,
+.flex-outer li p {
+  padding: 8px;
+  font-weight: 300;
+  letter-spacing: .09em;
 }
 
 .flex-outer > li > label,
@@ -123,9 +150,46 @@ pre, .dark{
   flex: 1 0 120px;
   max-width: 220px;
 }
- 
+
 .flex-outer > li > label + *,
 .flex-inner {
   flex: 1 0 220px;
+}
+
+.flex-outer li p {
+  margin: 0;
+}
+
+.flex-outer li input:not([type='checkbox']),
+.flex-outer li textarea {
+  padding: 15px;
+  border: none;
+}
+
+.flex-inner li {
+  width: 150px;
+}
+
+.card {
+	width: 150px;
+	margin: 10px;
+	text-align: center;
+	light-height: 75px;
+	font-size: 20px;
+}
+
+.flex-outer button {
+	margin: auto;
+	color: #fff;
+	background-color: #2A9D8F;
+	transition-duration: 0.4s;
+	border-color: white;
+}
+
+.zoom {
+    transition: transform .2s; 
+}
+.zoom:hover {
+    transform: scale(1.1);
 }
 
